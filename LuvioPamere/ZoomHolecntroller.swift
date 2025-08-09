@@ -31,14 +31,6 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
         
     }
     
-//    static var wigPioneer:Int?{
-//        get{
-//            return UserDefaults.standard.object(forKey: "wigPioneer") as? Int
-//        }set{
-//            UserDefaults.standard.set(newValue, forKey: "wigPioneer")
-//        }
-//        
-//    }
     private lazy var szaokiingView:UIActivityIndicatorView = {
        let large = UIActivityIndicatorView.init(style: .large)
         large.frame.size = CGSize.init(width: 54, height: 54)
@@ -194,7 +186,10 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
            
         case "gluelessWig":
             ZoomHolecntroller.wigBeliever = nil
-//            ZoomHolecntroller.wigPioneer = nil
+            UserDefaults.standard.set(nil, forKey: "wigCreator")
+            
+            UserDefaults.standard.set(nil, forKey: "wigPioneer")
+          
            
             ( (UIApplication.shared.delegate) as? AppDelegate)?.window?.rootViewController =  FrontalWigcscntroller.init()
            
