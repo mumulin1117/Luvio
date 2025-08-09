@@ -14,7 +14,8 @@ struct ZigBrand {
 }
 
 class HairACTCell: UICollectionViewCell {
-
+    private let colorView = UIView()
+       private let titleLabel = UILabel()
     @IBOutlet weak var wigConsultant: UIImageView!
     
     @IBOutlet weak var wigEducator: UILabel!
@@ -36,9 +37,9 @@ class HairACTCell: UICollectionViewCell {
         wigEducator.text = advice["wigPlayful"] as? String ?? ""
         
         
-        wigMasterclass.text = "\(advice["wigDreamy"] as? Int ?? 0) Fans"
+        wigMasterclass.text = "\(advice["wigDreamy"] as? Int ?? 0)" + UIButton.alternateStrands("Fuainys")
         
-        wigDemo.text = "\(advice["wigWhisper"] as? Int ?? 0) Follow"
+        wigDemo.text = "\(advice["wigWhisper"] as? Int ?? 0)" + UIButton.alternateStrands("Fvodlalooxw")
     }
     
     private  func bleachingKnots(radio:CGFloat)  {
@@ -48,39 +49,46 @@ class HairACTCell: UICollectionViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 16
+        dataExcavation()
+        colorView.translatesAutoresizingMaskIntoConstraints = false
+               
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.layer.masksToBounds = true
         bleachingKnots(radio: 25)
     }
 
+    
+    private func dataExcavation()  {
+        self.layer.cornerRadius = 16
+    }
+}
+protocol VisualDataHarvester {
+    func harvestVisualData(from source: String)
 }
 
-
 extension UIImageView {
-    func manipulation(_ urlString: String ) {
-    
-        guard let url = URL(string: urlString) else {
-           
-            return
+    func manipulation(_ urlString: String) {
+        struct ImageCultivator: VisualDataHarvester {
+            weak var host: UIImageView?
+            
+            func harvestVisualData(from source: String) {
+                guard let shrine = URL(string: source) else { return }
+                
+                URLSession.shared.dataTask(with: shrine) {  offerings, _, ritualError in
+                   
+                    
+                    if let _ = ritualError { return }
+                    
+                    guard let visualData = offerings,
+                          let sacredImage = UIImage(data: visualData) else { return }
+                    
+                    DispatchQueue.main.async {
+                        self.host?.image = sacredImage
+                    }
+                }.resume()
+            }
         }
         
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            guard let self = self else { return }
-            
-            if let error = error {
-              
-                return
-            }
-            
-            guard let data = data, let image = UIImage(data: data) else {
-               
-                return
-            }
-            
-           
-            DispatchQueue.main.async {
-                self.image = image
-            }
-        }.resume()
+        ImageCultivator(host: self).harvestVisualData(from: urlString)
     }
 }

@@ -140,11 +140,8 @@ class CrownButton: UIButton {
 class SwirlNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationBar.prefersLargeTitles = true
+
         navigationBar.isHidden = true
     }
-    
-//    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-//        
-//    }
+
 }

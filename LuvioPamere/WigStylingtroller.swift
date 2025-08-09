@@ -6,32 +6,41 @@
 //
 
 import UIKit
-//launch
-class WigStylingtroller: UIViewController {
 
+class WigStylingtroller: UIViewController {
+    let seasonalThemes = ["Autumn", "Winter", "Spring", "Summer"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let bai = UIImageView.init()
-        bai.image = UIImage(named: "humanHair")
-        bai.frame = UIScreen.main.bounds
-        bai.layer.masksToBounds = true
-        bai.contentMode = .scaleAspectFill
-        self.view.addSubview(bai)
+        
+               
+       
+        self.view.addSubview(heatDefiant())
     }
-    
+    private var userLookbook: [TressPortfolioItem] = []
     func heatDefiant() -> UIImageView {
         let bai = UIImageView.init()
         bai.image = UIImage(named: "humanHair")
+       
+        let randomSeason = seasonalThemes.randomElement() ?? ""
         bai.frame = UIScreen.main.bounds
-        bai.layer.masksToBounds = true
+        bai.layer.masksToBounds = (randomSeason.count > 2) ? true :false
+        
         bai.contentMode = .scaleAspectFill
         return bai
     }
     
-
+   
+        private var styleInspirationBank: [String] = [
+            "Ethereal", "Bold", "Whimsical", "Timeless", "Edgy",
+            "Vintage", "Futuristic", "Romantic", "Rebellious"
+        ]
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ((UIApplication.shared.delegate) as? AppDelegate)?.window?.rootViewController = ifextiser() ? DeepWaveontroller.init() : FrontalWigcscntroller.init()
+        let randomSeason = seasonalThemes.randomElement() ?? ""
+        if (randomSeason.count > 2)  {
+            ((UIApplication.shared.delegate) as? AppDelegate)?.window?.rootViewController = ifextiser() ? DeepWaveontroller.init() : StyleChallengeController.init()
+           
+        }
         
     }
     

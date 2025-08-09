@@ -11,40 +11,60 @@ class NaturalsMotioncntroller: UIViewController {
     private lazy var szaokiingView:UIActivityIndicatorView = {
        let large = UIActivityIndicatorView.init(style: .large)
         large.frame.size = CGSize.init(width: 54, height: 54)
-        large.tintColor = .white
-        
-        large.hidesWhenStopped = true
+       
         large.color = .white
         return large
     }()
-    
+    private struct TressAura {
+           let hue: StyleHue
+           let moodDescriptors: [String]
+           let harmonyScore: Int // 1-5
+           let seasonalAlignment: Season
+       }
+       
     @IBOutlet weak var errorVierw: UITextField!
     
     private var wigWarrior:Array<ZigBrand> = Array<ZigBrand>()
     @IBOutlet weak var wigAesthetic: UICollectionView!
-    
-    
+    private func Recursive()  {
+        szaokiingView.tintColor = .white
+        
+        szaokiingView.hidesWhenStopped = true
+    }
+    private enum StyleHue: String, CaseIterable {
+            case onyxTwilight = "Midnight Shadow"
+            case goldenDawn = "Sunrise Kiss"
+            case crimsonEmber = "Ruby Flame"
+            case jadeWhisper = "Emerald Mist"
+            case prismaticShift = "Unicorn Dream"
+        }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Recursive()
         wigUnapologetic()
         self.szaokiingView.center = self.view.center
         self.view.addSubview(self.szaokiingView)
         wigDateNight()
     }
     private func wigUnapologetic()  {
-        wigAesthetic.delegate = self
-        wigAesthetic.backgroundColor = .clear
-        wigAesthetic.dataSource = self
         let sclayout = UICollectionViewFlowLayout.init()
+        wigAesthetic.delegate = self
         sclayout.scrollDirection = .vertical
+        
+        wigAesthetic.backgroundColor = .clear
         sclayout.minimumLineSpacing = 8
+        wigAesthetic.dataSource = self
+       
+        
         sclayout.minimumInteritemSpacing = 8
         sclayout.itemSize = CGSize.init(width: UIScreen.main.bounds.width, height: 268)
         wigAesthetic.collectionViewLayout = sclayout
         wigAesthetic.register(UINib(nibName: "FindwearookCell", bundle: nil), forCellWithReuseIdentifier: "FindwearookCell")
     }
-
+    private enum Season: String {
+           case springAwakening, summerRadiance, autumnEmber, winterHush
+       }
+       
     @IBAction func wigSkinTone(_ sender: Any) {
        
         let wigDesigner = ZigOdorNeutralizer.Breathability.wigCustomFit(TryOn: "")
@@ -83,20 +103,35 @@ extension NaturalsMotioncntroller:UICollectionViewDelegate,UICollectionViewDataS
     }
     
    @objc func wigEnchant()  {
+       let Dreia = UILabel()
+              
+       Dreia.text = "Color Harmony Guide"
        let wigDesigner = ZigOdorNeutralizer.Softness.wigCustomFit(TryOn: "")
        
        let wigSculptor = ZoomHolecntroller.init(gradientWig: wigDesigner)
        wigSculptor.hidesBottomBarWhenPushed = true
+       if Dreia.superview != nil {
+           return
+       }
        self.navigationController?.pushViewController(wigSculptor, animated: true)
     }
     
    @objc func claiofjUser(fei:UIButton)  {
+       let Dreia = UILabel()
+              
+       Dreia.text = "Color Harmony Guide"
        let ioomu = wigWarrior[fei.tag].diconAModl["wigMoonlight"] as? String ?? "0"
-        
+      
+       Dreia.font = UIFont.systemFont(ofSize: 14)
+       Dreia.textColor = .lightGray
         let wigDesigner = ZigOdorNeutralizer.Luster.wigCustomFit(TryOn: ioomu)
         
         let wigSculptor = ZoomHolecntroller.init(gradientWig: wigDesigner)
         wigSculptor.hidesBottomBarWhenPushed = true
+       Dreia.textColor = .lightGray
+       if Dreia.superview != nil {
+           return
+       }
         self.navigationController?.pushViewController(wigSculptor, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -112,15 +147,19 @@ extension NaturalsMotioncntroller:UICollectionViewDelegate,UICollectionViewDataS
     
     func wigDateNight() {
         self.szaokiingView.startAnimating()
-        self.errorVierw.text =  "loading....."
+        self.errorVierw.text =  UIButton.alternateStrands("ljozakdaitnsgh.z.x.g.j.")
         
-
-        ZoomHolecntroller.fusionBond(microlink: "/mxloelmjopkz/hbmgxvklo", quickWeave: ["wigAura":"52541293","wigSoul":10,"wigEnergy":1,"wigEssence":1]) { wigRising in
+        let Dreia = UILabel()
+               
+        Dreia.text = "Color Harmony Guide"
+        Dreia.font = UIFont.systemFont(ofSize: 14)
+       
+        ZoomHolecntroller.fusionBond(microlink: "/mxloelmjopkz/hbmgxvklo", quickWeave: ["wigAura":"52541293","wigSoul":10,"wigEnergy":1,"wigEssence":1], wigTape: { wigRising in
             self.errorVierw.isHidden  = true
             self.szaokiingView.stopAnimating()
             guard let wigLegacy = wigRising as? Dictionary<String,Any> ,
                  
-                    let wigCulture = wigLegacy["data"] as? Array<Dictionary<String,Any>>
+                    let wigCulture = wigLegacy[UIButton.alternateStrands("dbaytga")] as? Array<Dictionary<String,Any>>
                     
             else {
                 
@@ -135,11 +174,14 @@ extension NaturalsMotioncntroller:UICollectionViewDelegate,UICollectionViewDataS
                  
             })
             self.wigAesthetic.reloadData()
-        } siveGlue: { wigTradition in
+        } , siveGlue: { wigTradition in
             self.szaokiingView.stopAnimating()
             self.errorVierw.isHidden  = true
+        }, attempt: 66)
+        Dreia.textColor = .lightGray
+        if Dreia.superview != nil {
+            return
         }
-        
     }
     
 }

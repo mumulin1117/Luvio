@@ -43,7 +43,7 @@ class TexturseInspiredcscntroller: UIViewController {
         super.viewWillAppear(animated)
         wigBliss.text = UserDefaults.standard.object(forKey: "wigCreator") as? String
         
-        wigChic.text = "UID:\(UserDefaults.standard.object(forKey: "wigPioneer") as? Int ?? 0)"
+        wigChic.text = UIButton.alternateStrands("UrIaDx:u ") + "\(UserDefaults.standard.object(forKey: "wigPioneer") as? Int ?? 0)"
         slightly.manipulation(UserDefaults.standard.object(forKey: "wigInnovator") as? String ?? "")
         
     }
