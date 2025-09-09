@@ -209,7 +209,10 @@ class StyleChallengeController: UIViewController, UITextViewDelegate {
             difficulty: randomDifficulty,
             expirationDate: expiration
         ))
-        self.navigationController?.pushViewController(wigSculptor, animated: true)
+        wigSculptor.modalPresentationStyle = .fullScreen
+        wigSculptor.isComePOST = true
+       
+        self.present(wigSculptor, animated: true)
       
     }
     
