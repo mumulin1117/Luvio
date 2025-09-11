@@ -38,15 +38,29 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho4-NG-Nbl">
+                        <rect key="frame" x="227" y="28" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="1Dl-hU-d5U"/>
+                            <constraint firstAttribute="height" constant="25" id="cMI-Tz-W7J"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="JIaoki">
+                            <color key="titleColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="uRA-lc-FE5" secondAttribute="bottom" constant="5" id="7JN-Cd-3py"/>
+                <constraint firstItem="ho4-NG-Nbl" firstAttribute="centerY" secondItem="xa9-EY-dUq" secondAttribute="centerY" id="As4-em-d9n"/>
                 <constraint firstItem="xa9-EY-dUq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="27" id="BGH-hm-Sd0"/>
                 <constraint firstAttribute="trailing" secondItem="uRA-lc-FE5" secondAttribute="trailing" constant="5" id="Hma-oy-njB"/>
                 <constraint firstItem="1m4-Ei-Dcb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JIG-az-Wnh"/>
                 <constraint firstItem="xa9-EY-dUq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="NOc-n3-c1H"/>
+                <constraint firstAttribute="trailing" secondItem="ho4-NG-Nbl" secondAttribute="trailing" constant="12" id="Ra8-Yy-WSv"/>
                 <constraint firstItem="uRA-lc-FE5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="TXR-0c-isf"/>
                 <constraint firstAttribute="trailing" secondItem="1m4-Ei-Dcb" secondAttribute="trailing" id="Ufb-v6-UFJ"/>
                 <constraint firstItem="1m4-Ei-Dcb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WG3-OW-4YB"/>
@@ -56,11 +70,13 @@
             <connections>
                 <outlet property="ombreBlend" destination="uRA-lc-FE5" id="T0p-PM-Cxo"/>
                 <outlet property="wigConsultant" destination="1m4-Ei-Dcb" id="gxK-7B-ikU"/>
+                <outlet property="wigDesigner" destination="ho4-NG-Nbl" id="AYQ-uc-jZV"/>
             </connections>
             <point key="canvasLocation" x="270.2290076335878" y="107.74647887323944"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="JIaoki" width="26" height="26"/>
         <image name="sdfmk" width="32" height="32"/>
     </resources>
 </document>

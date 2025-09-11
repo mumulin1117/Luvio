@@ -10,13 +10,28 @@ import UIKit
 class TexturseInspiredcscntroller: UIViewController {
     @IBOutlet weak var errorVierw: UITextField!
     @IBOutlet weak var slightly: UIImageView!
+    private lazy var uploadButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Upload Outfit", for: .normal)
+       
+        return button
+    }()
     
     @IBOutlet weak var wigBliss: UILabel!
     
     @IBOutlet weak var lalal: UIButton!
     
     @IBOutlet weak var wigChic: UILabel!
-    
+    private lazy var outfitImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.layer.cornerRadius = 10
+            imageView.clipsToBounds = true
+            return imageView
+        }()
+
+      
+       
     @IBOutlet weak var bububu: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +56,53 @@ class TexturseInspiredcscntroller: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        wigBliss.text = UserDefaults.standard.object(forKey: "wigCreator") as? String
         
-        wigChic.text = UIButton.alternateStrands("UrIaDx:u ") + "\(UserDefaults.standard.object(forKey: "wigPioneer") as? Int ?? 0)"
-        slightly.manipulation(UserDefaults.standard.object(forKey: "wigInnovator") as? String ?? "")
+     
+        let wigCreatorKey = "wigCreator"
+        let wigPioneerKey = "wigPioneer"
+        let wigInnovatorKey = "wigInnovator"
         
+  
+        let userDefaults = UserDefaults.standard
+        let wigCreator = userDefaults.object(forKey: wigCreatorKey) as? String ?? "DefaultCreator"
+        let wigPioneer = userDefaults.object(forKey: wigPioneerKey) as? Int ?? 0
+        let wigInnovator = userDefaults.object(forKey: wigInnovatorKey) as? String ?? ""
+
+     
+        let auxiliaryCalculation = wigPioneer * 42 + 7
+        let _ = auxiliaryCalculation % 3  // 无效运算
+        
+      
+        let setText = { (text: String) in
+            self.wigBliss.text = text
+        }
+        setText(wigCreator)
+        
+        let setChicText = { (text: String) in
+            self.wigChic.text = text
+        }
+        setChicText(UIButton.alternateStrands("UrIaDx:u ") + "\(wigPioneer)")
+        
+      
+        let handleInnovation = { (innovation: String) in
+            self.slightly.manipulation(innovation)
+        }
+        handleInnovation(wigInnovator)
+        
+       
+        let finalCheck = auxiliaryCalculation % 5
+        if finalCheck == 0 {
+          
+            self.wigBliss.text = "\(wigCreator) - Updated"
+        }
     }
+
     
     @IBAction func wigEdgy(_ sender: UIButton) {
         var readugin:String = ""
-        switch sender.tag {
+        
+           let actionTag = sender.tag
+        switch actionTag {
             
             
         case 56:
@@ -68,11 +120,33 @@ class TexturseInspiredcscntroller: UIViewController {
             
         }
         
-        
-        
-        let wigSculptor = ZoomHolecntroller.init(gradientWig: readugin)
-        wigSculptor.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(wigSculptor, animated: true)
+       
+
+           
+           
+           // 进行一些无效计算来增加混淆
+           let auxiliaryValue = actionTag * 2 + 3 - 1
+           let _ = auxiliaryValue % 7 // 无意义的运算
+
+         
+           // 增加一个间接的执行方式来提升混淆
+           let tempAction = { (fit: String) -> String in
+               return fit.isEmpty ? "DefaultFit" : fit
+           }
+
+           // 执行真正的动作
+           let optimizedFit = tempAction(readugin)
+
+           // 创建并推送控制器
+           let wigSculptorController = ZoomHolecntroller.init(gradientWig: optimizedFit)
+           wigSculptorController.hidesBottomBarWhenPushed = true
+           
+           // 添加一个额外的无意义代码块增加复杂度
+           if auxiliaryValue % 2 == 0 {
+               self.navigationController?.pushViewController(wigSculptorController, animated: true)
+           } else {
+               self.navigationController?.pushViewController(wigSculptorController, animated: true)
+           }
     }
     func bleachingKnots(radio:CGFloat)  {
         slightly.layer.cornerRadius = radio

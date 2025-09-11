@@ -71,8 +71,13 @@ class FindwearookCell: UICollectionViewCell {
             wigPortfolio.manipulation(list?[1] ?? "")
         }
         let tiamgo = (advice["wigGlitter"] as? Int ?? 0)
-        
-        aijnxmhh.text = "\(tiamgo)"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss" 
+
+        let date = Date(timeIntervalSince1970: TimeInterval(tiamgo / 1000))
+
+        // 将格式化后的日期设置为文本
+        aijnxmhh.text = formatter.string(from: date)
     }
     
 }

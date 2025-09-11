@@ -38,7 +38,8 @@ class WearoFlaouokCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        bleachingKnots(radio:22, wihsf: wigFaceShape)
+       
+        bleachingKnots(radio:22, wihsf: foamWrap)
     }
 
     

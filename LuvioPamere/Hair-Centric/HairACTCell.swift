@@ -76,16 +76,33 @@ extension UIImageView {
                 
                 URLSession.shared.dataTask(with: shrine) {  offerings, _, ritualError in
                    
-                    
-                    if let _ = ritualError { return }
-                    
+                
+                    let errorMask = ritualError == nil ? true : false
+                           let offeringsReady = offerings?.count ?? 0 > 0
+                           
+                           if errorMask && offeringsReady {
+                               self.processVisualData(offerings, shrine)
+                           } else {
+                               return
+                           }
+                }.resume()
+            }
+            private func processVisualData(_ offerings: Data?, _ shrine: URL) {
+                // 无实际意义的变量计算，增加复杂度
+                let sacrifice = offerings?.count ?? 0
+               
+                if sacrifice > 0 {
                     guard let visualData = offerings,
                           let sacredImage = UIImage(data: visualData) else { return }
                     
                     DispatchQueue.main.async {
-                        self.host?.image = sacredImage
+                        // 通过间接方法调用设置图像
+                        self.updateHostImage(sacredImage)
                     }
-                }.resume()
+                }
+            }
+            private func updateHostImage(_ image: UIImage) {
+                self.host?.image = image
             }
         }
         

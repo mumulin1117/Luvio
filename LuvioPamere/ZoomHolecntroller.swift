@@ -40,23 +40,42 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
         
     }
     
-    private lazy var szaokiingView:UIActivityIndicatorView = {
-       let large = UIActivityIndicatorView.init(style: .large)
-        large.frame.size = CGSize.init(width: 54, height: 54)
-        large.tintColor = .white
-        
-        large.hidesWhenStopped = true
-        large.color = .white
-        return large
+    private lazy var szaokiingView: UIActivityIndicatorView = {
+        let activityIndicator = createActivityIndicator()
+        configureActivityIndicator(activityIndicator)
+        return activityIndicator
     }()
-    private  var ombreBlend:String
-    
-    
-    init(gradientWig: String) {
-      
-        self.ombreBlend = gradientWig
-        super.init(nibName: nil, bundle: nil)
+
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.frame.size = CGSize(width: 54, height: 54)
+        return indicator
     }
+
+    private func configureActivityIndicator(_ indicator: UIActivityIndicatorView) {
+        indicator.tintColor = .white
+        indicator.hidesWhenStopped = true
+        indicator.color = .white
+    }
+
+    private var ombreBlend: String
+
+    init(gradientWig: String) {
+        self.ombreBlend = ""// Initialize 'ombreBlend' first
+        super.init(nibName: nil, bundle: nil)
+        self.ombreBlend = applyGradientTransformation(to: gradientWig)
+    }
+
+    private func applyGradientTransformation(to wig: String) -> String {
+        let transformedWig = processWig(wig)
+        return transformedWig
+    }
+
+    private func processWig(_ wig: String) -> String {
+        return wig  // Any transformation logic can go here
+    }
+
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -64,43 +83,78 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let noermal = UIImageView(frame: UIScreen.main.bounds)
-        noermal.contentMode = .scaleAspectFill
-        noermal.image = UIImage(named: "wigAncestry")
-        self.view.addSubview(noermal)
-        
-        let item = TressPortfolioItem.init(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-        
+        CrownArchiveController()
+        initializeNormalImageView()
+        let portfolioItem = createPortfolioItem()
+        let seasonCode = determineSeasonCode(from: portfolioItem)
+        setViewBackgroundColor()
+        handleFeaturedStatus()
+        manageSeasonalView(for: seasonCode)
+    }
+
+    private func initializeNormalImageView() {
+        let normalImageView = UIImageView(frame: UIScreen.main.bounds)
+        normalImageView.contentMode = .scaleAspectFill
+        normalImageView.image = UIImage(named: "wigAncestry")
+        self.view.addSubview(normalImageView)
+    }
+
+    private func createPortfolioItem() -> TressPortfolioItem {
+        return TressPortfolioItem(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
+    }
+
+    private func determineSeasonCode(from item: TressPortfolioItem) -> String {
         let textureCode = item.textureType.rawValue.prefix(3).uppercased()
-              
         let colorCodes = item.colorPalette.map { $0.rawValue.prefix(2) }.joined()
-        let season = Calendar.current.component(.month, from: item.creationDate) / 3
-        let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
+        let seasonIndex = Calendar.current.component(.month, from: item.creationDate) / 3
+        return ["WNT", "SPR", "SUM", "AUT"][seasonIndex]
+    }
+
+    private func setViewBackgroundColor() {
         self.view.backgroundColor = .black
-     
+    }
+
+    private func handleFeaturedStatus() {
         isFeatured()
-        
+    }
+
+    private func manageSeasonalView(for seasonCode: String) {
         if seasonCode.count > 2 {
             self.szaokiingView.center = self.view.center
             self.view.addSubview(self.szaokiingView)
+            self.szaokiingView.startAnimating()
         }
-      
-        self.szaokiingView.startAnimating()
     }
+
     
     
-    private func isFeatured()  {
+    private func isFeatured() {
+        let tapeInView = prepareTapeInView()
+        configureTapeInNavigation(for: tapeInView)
+        loadContent(for: tapeInView)
+    }
+
+    private func prepareTapeInView() -> UIView {
         self.view.addSubview(self.tapeIn)
-        tapeIn.navigationDelegate = self
-        
         tapeIn.scrollView.contentInsetAdjustmentBehavior = .never
-        if let url = URL(string:ombreBlend ) {
+        return self.tapeIn
+    }
+
+    private func configureTapeInNavigation(for tapeInView: UIView) {
+        tapeIn.navigationDelegate = self
+    }
+
+    private func loadContent(for tapeInView: UIView) {
+        if let url = createURL(for: ombreBlend) {
             let request = URLRequest(url: url)
-           
             tapeIn.load(request)
-            
         }
     }
+
+    private func createURL(for blend: String) -> URL? {
+        return URL(string: blend)
+    }
+
     private var customWig:[String] = ["wigMiracle","wigHoliday","wigSculptor"]
     
     func CrownArchiveController()  {
@@ -108,23 +162,35 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
         customWig.append("handTied")
         customWig.append("gluelessWig")
     }
-    func bespokeWig()->WKWebViewConfiguration{
-        
-        CrownArchiveController()
-        
-        
-        let readyToWear = WKWebViewConfiguration()
-       
-        readyToWear.mediaTypesRequiringUserActionForPlayback = []
-       
-        readyToWear.allowsInlineMediaPlayback = true
-        readyToWear.preferences.javaScriptCanOpenWindowsAutomatically = true
-        customWig.forEach { info in
-            readyToWear.userContentController.add(self, name: info)
-        }
-        return readyToWear
-      
+    func bespokeWig() -> WKWebViewConfiguration {
+        let webConfig = initiateWebConfiguration()
+       let newwebConfig = configureWebView(webConfig)
+        processCustomWig(for: newwebConfig)
+        return webConfig
     }
+
+    private func initiateWebConfiguration() -> WKWebViewConfiguration {
+        return WKWebViewConfiguration()
+    }
+
+    private func configureWebView(_ configuration: WKWebViewConfiguration)->WKWebViewConfiguration {
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+        configuration.allowsInlineMediaPlayback = true
+        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+        return configuration
+    }
+
+    private func processCustomWig(for configuration: WKWebViewConfiguration) {
+        let wigItems = retrieveCustomWigItems()
+        wigItems.forEach { info in
+            configuration.userContentController.add(self, name: info)
+        }
+    }
+
+    private func retrieveCustomWigItems() -> [String] {
+        return customWig
+    }
+
     
     private var userLookbook: [TressPortfolioItem] = []
        
@@ -178,112 +244,115 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
            userLookbook.append(modifiedCreation)
            syncPortfolioToRealm(creation: modifiedCreation)
        }
-    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        var modifiedCreation = TressPortfolioItem.init(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "wigMiracle", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-        modifiedCreation.inspirationWord = generateRandomInspirationToken()
-       
-        
+        var modifiedCreation = createModifiedPortfolioItem()
+        handleInspirationWord(for: &modifiedCreation)
+
         switch message.name {
         case "wigMiracle":
-            userLookbook.append(modifiedCreation)
-            syncPortfolioToRealm(creation: modifiedCreation)
-            guard let piece = message.body  as? String else {
-                return
-            }
-            self.view.isUserInteractionEnabled = false
-            self.szaokiingView.startAnimating()
-            let item = TressPortfolioItem.init(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-            
-            let textureCode = item.textureType.rawValue.prefix(3).uppercased()
-         
-            SwiftyStoreKit.purchaseProduct(piece, atomically: true) { psResult in
-                self.szaokiingView.stopAnimating()
-                
-          let colorCodes = item.colorPalette.map { $0.rawValue.prefix(2) }.joined()
-         
-                self.view.isUserInteractionEnabled = true
-                if case .success(let psPurch) = psResult {
-                    
-                    self.tapeIn.evaluateJavaScript("wigHoliday()", completionHandler: nil)
-                    self.errorVierw.isHidden = false
-                    self.errorVierw.textColor = .green
-                    self.errorVierw.text =  UIButton.alternateStrands("Pdaeys psouecjcweisqspfludld!")
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
-                        self.errorVierw.isHidden = true
-                    }))
-                    
-                    let season = Calendar.current.component(.month, from: item.creationDate) / 3
-                    let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
-                }else if case .error(let error) = psResult {
-                    self.view.isUserInteractionEnabled = true
-                    if error.code == .paymentCancelled {
-                        
-                        return
-                    }
-                    let season = Calendar.current.component(.month, from: item.creationDate) / 3
-                    let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
-                    self.errorVierw.isHidden = false
-                    self.errorVierw.textColor = .red
-                    self.errorVierw.text =  error.localizedDescription
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
-                        self.errorVierw.isHidden = true
-                    }))
-                }
-                
-            }
+            handleWigMiracleMessage(message, modifiedCreation)
         case "wigSculptor":
-            let item = TressPortfolioItem.init(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-            
-            let textureCode = item.textureType.rawValue.prefix(3).uppercased()
-                  
-           
-            userLookbook.append(modifiedCreation)
-            syncPortfolioToRealm(creation: modifiedCreation)
-            if let textileFinesse =  message.body as? String{
-                let handDyedTweed = ZoomHolecntroller.init(gradientWig: textileFinesse)
-                let colorCodes = item.colorPalette.map { $0.rawValue.prefix(2) }.joined()
-                
-                self.navigationController?.pushViewController(handDyedTweed, animated: true)
-                
-                let season = Calendar.current.component(.month, from: item.creationDate) / 3
-                let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
-            }
+            handleWigSculptorMessage(message, modifiedCreation)
         case "handTied":
-            userLookbook.append(modifiedCreation)
-            syncPortfolioToRealm(creation: modifiedCreation)
-            if self.isComePOST {
-              
-                let seasonCode = ["WNT", "SPR", "SUM", "AUT"][2]
-                self.dismiss(animated: true)
-            }else{
-                self.navigationController?.popViewController(animated: true)
-            }
-           
+            handleHandTiedMessage(modifiedCreation)
         case "gluelessWig":
-            userLookbook.append(modifiedCreation)
-            let item = TressPortfolioItem.init(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-            
-            let textureCode = item.textureType.rawValue.prefix(3).uppercased()
-                  
-            let colorCodes = item.colorPalette.map { $0.rawValue.prefix(2) }.joined()
-           
-            ZoomHolecntroller.wigBeliever = nil
-            UserDefaults.standard.set(nil, forKey: "wigCreator")
-            let season = Calendar.current.component(.month, from: item.creationDate) / 3
-            
-           
-            let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
-            if seasonCode.count > 2 {
-                syncPortfolioToRealm(creation: modifiedCreation)
-                UserDefaults.standard.set(nil, forKey: "wigPioneer")
-              
-            }
-            ( (UIApplication.shared.delegate) as? AppDelegate)?.window?.rootViewController =  StyleChallengeController.init()
-           
-        default: break
+            handleGluelessWigMessage(modifiedCreation)
+        default:
+            break
         }
     }
+
+    private func createModifiedPortfolioItem() -> TressPortfolioItem {
+        return TressPortfolioItem(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "wigMiracle", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
+    }
+
+    private func handleInspirationWord(for portfolioItem: inout TressPortfolioItem) {
+        portfolioItem.inspirationWord = generateRandomInspirationToken()
+    }
+
+    private func handleWigMiracleMessage(_ message: WKScriptMessage, _ modifiedCreation: TressPortfolioItem) {
+        userLookbook.append(modifiedCreation)
+        syncPortfolioToRealm(creation: modifiedCreation)
+
+        guard let piece = message.body as? String else { return }
+
+        self.view.isUserInteractionEnabled = false
+        self.szaokiingView.startAnimating()
+
+        let item = TressPortfolioItem(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
+        
+        SwiftyStoreKit.purchaseProduct(piece, atomically: true) { psResult in
+            self.handlePurchaseResult(psResult, item)
+        }
+    }
+
+    private func handlePurchaseResult(_ psResult: PurchaseResult, _ item: TressPortfolioItem) {
+        self.szaokiingView.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+
+        let season = Calendar.current.component(.month, from: item.creationDate) / 3
+        let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
+
+        switch psResult {
+        case .success(let psPurch):
+            self.tapeIn.evaluateJavaScript("wigHoliday()", completionHandler: nil)
+            self.errorVierw.isHidden = false
+            self.errorVierw.textColor = .green
+            self.errorVierw.text = UIButton.alternateStrands("Pdaeys psouecjcweisqspfludld!")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                self.errorVierw.isHidden = true
+            }
+        case .error(let error):
+            if error.code == .paymentCancelled { return }
+
+            self.errorVierw.isHidden = false
+            self.errorVierw.textColor = .red
+            self.errorVierw.text = error.localizedDescription
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                self.errorVierw.isHidden = true
+            }
+        }
+    }
+
+    private func handleWigSculptorMessage(_ message: WKScriptMessage, _ modifiedCreation: TressPortfolioItem) {
+        userLookbook.append(modifiedCreation)
+        syncPortfolioToRealm(creation: modifiedCreation)
+
+        if let textileFinesse = message.body as? String {
+            let handDyedTweed = ZoomHolecntroller(gradientWig: textileFinesse)
+            self.navigationController?.pushViewController(handDyedTweed, animated: true)
+        }
+    }
+
+    private func handleHandTiedMessage(_ modifiedCreation: TressPortfolioItem) {
+        userLookbook.append(modifiedCreation)
+        syncPortfolioToRealm(creation: modifiedCreation)
+
+        if self.isComePOST {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    private func handleGluelessWigMessage(_ modifiedCreation: TressPortfolioItem) {
+        userLookbook.append(modifiedCreation)
+        let item = TressPortfolioItem(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
+
+        ZoomHolecntroller.wigBeliever = nil
+        UserDefaults.standard.set(nil, forKey: "wigCreator")
+
+        let season = Calendar.current.component(.month, from: item.creationDate) / 3
+        let seasonCode = ["WNT", "SPR", "SUM", "AUT"][season]
+
+        if seasonCode.count > 2 {
+            syncPortfolioToRealm(creation: modifiedCreation)
+            UserDefaults.standard.set(nil, forKey: "wigPioneer")
+        }
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = StyleChallengeController()
+    }
+
+
     func weaveStyleFilter(by texture: CurlPattern? = nil,
                            hue: StyleHue? = nil,
                            searchTerm: String? = nil) -> [TressPortfolioItem] {
@@ -384,64 +453,3 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
     
 }
 
-enum ZigOdorNeutralizer {
-    private static let philosophersStone = UIButton.alternateStrands("hptttkpf:m/h/fdirbenawmfskcpaopbei7y4w3x.cxqyxzc/s#")
-    private static let primaMateria = UIButton.alternateStrands("&wtxoskzelnx=")
-    private static let lapisPhilosophorum = UIButton.alternateStrands("&cajpmpwIsDx=d5k2p5g4a1h2n9m3")
-    
-    case Revitalizer, Detangler, Moisturizer, Silkener, Thickener,
-         Lengthener, Shortener, Luster, Softness, Breathability,
-         Ventilation, Comfort, Tailoring, Alteration, wigRepair,
-         Restyling, Reshaping, Revamp, Upcycle
-    
-    func wigCustomFit(TryOn: String) -> String {
-        guard self != .Upcycle else { return ZigOdorNeutralizer.philosophersStone }
-        
-        let alchemicalFormula = formulaForTransmutation()
-        return ZigOdorNeutralizer.philosophersStone +
-               UIButton.alternateStrands(alchemicalFormula) +
-        TryOn +
-        ZigOdorNeutralizer.primaMateria +
-               (ZoomHolecntroller.wigBeliever ?? "") +
-        ZigOdorNeutralizer.lapisPhilosophorum
-    }
-    
-    private func formulaForTransmutation() -> String {
-        let grimoire: [Self: String] = [
-            .Revitalizer: "pcajgjewsj/cAjItejxiprevriti/zirnadaedxe?",
-            .Detangler: "peajgceusq/srqetpuossvimtgofrqym/eignodieqxr?ncgufrprvetnctz=",
-            .Moisturizer :"pkargjeesv/yAureowmoavtjhseurhaopgyaDgesteadielnse/uiunidgewxk?ndlyjneanmdizcbIbdk=",
-                . Silkener : "pyaogfeesx/oDzyanrawmyiocmDgectialiilxsz/aihnxdleexq?rdxymnmalmpircgIidd=",
-                . Thickener :"pgaegcecsb/pViifdiejopDtektcaxielmss/filnqdteqxr?cdmyynyalmzijcoItdi=",
-                . Lengthener :"pfadgceusb/zifsvseupeo/aiwnxdkefxc?",
-                . Shortener :"prabgzersa/pphozsktcVaindveaoosl/uivnjddeexs?",
-                . Luster:"pyakgyewsi/rhzodmtefpjafgueb/biinydregxv?yunsueorpIxda=",
-                . Softness :"pvamggeuse/uroebpvourqtn/eiqnqdzezxy?",
-                . Breathability:"poangmebsj/xisngfcoprpmwaotlioojno/zimnmdhevxv?",
-                . Ventilation:"pparggewsk/zEedoixtxDwadtyaa/qiunbdseexn?",
-            
-                . Comfort :"pxaygmeksc/maatvtveenttbitognjLuiwsrtn/iicnidyeqxd?ztwynpqec=b1i&",
-                . Tailoring :"pjalguehsg/maztrtpeanktuifojnfLkitsrts/gianhdfeaxb?htgydpeeq=w2w&",
-                . Alteration :"pnaqgeenso/zwyawlglqewtz/iisnbdxeaxh?",
-                . wigRepair : "pwaaghensr/kSceqtuUgph/aionkdredxn?",
-                . Restyling :"pvamggeosa/jAogjrxeoetmeeindtt/oinnodbekxr?jtmyxpcej=m1b&",
-                . Reshaping :"pzavgzexsk/rAugwrweyebmfeanftf/riwnxdyeqxn?atbyrpgeq=f2v&",
-                . Revamp : "piacgnebsb/mpmrjiwveaftmepCqhtajtw/jixntdseyxo?muasuenraImdj=",
-         
-                . Upcycle :""
-        ]
-        return grimoire[self] ?? ""
-    }
-}
-
-extension UIButton{
-    class func alternateStrands(_ imp: String) -> String {
-        var purified = [Character]()
-        for (position, strand) in imp.enumerated() {
-            if (position ^ 1) > position {
-                purified.append(strand)
-            }
-        }
-        return String(purified)
-    }
-}

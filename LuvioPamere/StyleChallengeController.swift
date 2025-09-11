@@ -9,14 +9,36 @@ import UIKit
 
 class StyleChallengeController: UIViewController, UITextViewDelegate {
     private var currentChallenges: [CrownChallenge] = []
-    private var challengeArchive: [String: CrownChallenge] = [:]
-    private var activeUser: StyleEnthusiast?
+    private lazy var aiStylistButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Get Style Advice", for: .normal)
+            button.addTarget(self, action: #selector(getStyleAdvice), for: .touchUpInside)
+            return button
+        }()
+    @objc private func getStyleAdvice() {
+            // Placeholder for AI Stylist interaction
+            let alert = UIAlertController(title: "AI Stylist", message: "Would you like some styling advice?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                self.showStyleSuggestions()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     
+    private func showStyleSuggestions() {
+            // Placeholder for showing style suggestions from AI
+            let suggestionsController = UIViewController()
+            suggestionsController.view.backgroundColor = .lightGray
+            suggestionsController.title = "Style Suggestions"
+            navigationController?.pushViewController(suggestionsController, animated: true)
+        }
     
     @IBOutlet weak var neckline: UITextField!
+    private var challengeArchive: [String: CrownChallenge] = [:]
+   
     
     @IBOutlet weak var PolicyLabel: UITextView!
-    
+    private var activeUser: StyleEnthusiast?
     @IBOutlet weak var lengths: UITextField!
    
     @IBOutlet weak var perfect: UIButton!

@@ -14,18 +14,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        fusionBond()
+        executeFusionProtocol()
         self.window?.makeKeyAndVisible()
-        SwiftyStoreKit.completeTransactions(atomically: true) { _ in
-            
-        }
+        SwiftyStoreKit.completeTransactions(atomically: true) { _ in }
         return true
     }
 
-    func fusionBond()  {
-        self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.window?.rootViewController =  WigStylingtroller.init()
+    func executeFusionProtocol()  {
+        let localWindow = UIWindow.init(frame: UIScreen.main.bounds)
+        configureRootView(for: localWindow)
     }
+
+    private func configureRootView(for window: UIWindow) {
+        window.rootViewController = createMainController()
+        self.window = window
+    }
+
+    private func createMainController() -> UIViewController {
+        return WigStylingtroller.init()
+    }
+
 }
 
 

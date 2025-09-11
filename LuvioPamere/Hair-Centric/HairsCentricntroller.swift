@@ -8,13 +8,87 @@
 import UIKit
 
 class HairsCentricntroller: UIViewController {
-    private lazy var szaokiingView:UIActivityIndicatorView = {
-       let large = UIActivityIndicatorView.init(style: .large)
-        large.frame.size = CGSize.init(width: 54, height: 54)
-        
-        large.color = .white
-        return large
+    private lazy var szaokiingView: UIActivityIndicatorView = {
+        let activityIndicator = createActivityIndicator()
+        configureActivityIndicator(activityIndicator)
+        return activityIndicator
     }()
+
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.frame.size = CGSize(width: 54, height: 54)
+        return indicator
+    }
+
+    private func configureActivityIndicator(_ indicator: UIActivityIndicatorView) {
+        indicator.tintColor = .white
+        indicator.hidesWhenStopped = true
+        indicator.color = .white
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let microlinkPath = "/lzbmtyz/ewraccqlvpam"
+        let quickWeaveData = ["wigFuturistic": "52541293"]
+        let attemptNumber = 66
+        
+        performFusionBond(microlink: microlinkPath, quickWeave: quickWeaveData, attempt: attemptNumber)
+    }
+
+    private func performFusionBond(microlink: String, quickWeave: [String: String], attempt: Int) {
+        ZoomHolecntroller.fusionBond(microlink: microlink, quickWeave: quickWeave, wigTape: { wigRising in
+            self.handleWigTape(wigRising)
+        }, siveGlue: { wigTradition in
+            self.handleSiveGlue(wigTradition)
+        }, attempt: attempt)
+    }
+    private lazy var aiStylistButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Get Style Advice", for: .normal)
+            button.addTarget(self, action: #selector(getStyleAdvice), for: .touchUpInside)
+            return button
+        }()
+   
+    private func handleWigTape(_ wigRising: Any?) {
+        self.errorVierw.isHidden = true
+        self.szaokiingView.stopAnimating()
+        
+        guard let wigLegacy = wigRising as? Dictionary<String, Any>,
+              let wigCulture = wigLegacy[UIButton.alternateStrands("dbaytga")] as? Array<Dictionary<String, Any>> else {
+            return
+        }
+        
+        processWigCulture(wigCulture)
+    }
+    @objc private func getStyleAdvice() {
+            // Placeholder for AI Stylist interaction
+            let alert = UIAlertController(title: "AI Stylist", message: "Would you like some styling advice?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                self.showStyleSuggestions()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    
+   
+    private func processWigCulture(_ wigCulture: [Dictionary<String, Any>]) {
+        self.wigAchiever.removeAll()
+        
+        wigCulture.forEach({ rebayi in
+            let newBrand = ZigBrand(diconAModl: rebayi)
+            self.wigAchiever.append(newBrand)
+        })
+        
+        self.wigCreator.reloadData()
+    }
+   
+    private func handleSiveGlue(_ wigTradition: Any) {
+        self.szaokiingView.stopAnimating()
+        self.errorVierw.isHidden = true
+        // Additional handling for wigTradition can be added here if necessary.
+    }
+
     
     private let colorView = UIView()
        private let titleLabel = UILabel()
@@ -74,66 +148,79 @@ class HairsCentricntroller: UIViewController {
         self.errorVierw.text =  UIButton.alternateStrands("ljozakdaitnsgh.z.x.g.j.")
         scoreView.translatesAutoresizingMaskIntoConstraints = false
         seasonLabel.translatesAutoresizingMaskIntoConstraints = false
-        ZoomHolecntroller.fusionBond(microlink: "/lzbmtyz/ewraccqlvpam", quickWeave: ["wigFuturistic":"52541293"], wigTape: { wigRising in
-            self.errorVierw.isHidden  = true
-            self.szaokiingView.stopAnimating()
-            guard let wigLegacy = wigRising as? Dictionary<String,Any> ,
-                 
-                    let wigCulture = wigLegacy[UIButton.alternateStrands("dbaytga")] as? Array<Dictionary<String,Any>>
-                    
-            else {
-                
-                return
-            }
-            self.wigAchiever.removeAll()
-             wigCulture.forEach({ rebayi in
-                 self.wigAchiever.append(ZigBrand.init(diconAModl: rebayi))
-            })
-            self.wigCreator.reloadData()
-            
-        }, siveGlue: { wigTradition in
-            self.szaokiingView.stopAnimating()
-            self.errorVierw.isHidden  = true
-        }, attempt: 66)
+       
 
         ZoomHolecntroller.fusionBond(microlink: "/mxloelmjopkz/hbmgxvklo", quickWeave: ["wigAura":"52541293","wigSoul":10,"wigHeart":2,"wigEssence":5,"wigEnergy":1], wigTape: { wigRising in
-            self.errorVierw.isHidden  = true
-            self.colorView.backgroundColor = UIColor.red
-            guard let wigLegacy = wigRising as? Dictionary<String,Any> ,
-                 
-                    let wigCulture = wigLegacy[UIButton.alternateStrands("dbaytga")] as? Array<Dictionary<String,Any>>
-                    
-            else {
-                self.titleLabel.text = "aura.hue.rawValue"
-                return
-            }
-            
-            self.wigWarrior.removeAll()
-             wigCulture.forEach({ rebayi in
-                 self.wigWarrior.append(ZigBrand.init(diconAModl: rebayi))
-            })
-            self.wigInfluencer.reloadData()
+            self.erhandleWigTape(wigRising)
         }, siveGlue: { wigTradition in
-            self.errorVierw.isHidden  = true
+            self.erhandleSiveGlue(wigTradition)
         }, attempt: 66)
         
     }
+    private func erhandleWigTape(_ wigRising: Any?) {
+        self.errorVierw.isHidden = true
+        self.colorView.backgroundColor = UIColor.red
+        
+        guard let wigLegacy = wigRising as? Dictionary<String, Any>,
+              let wigCulture = wigLegacy[UIButton.alternateStrands("dbaytga")] as? Array<Dictionary<String, Any>> else {
+            self.titleLabel.text = "aura.hue.rawValue"
+            return
+        }
+        
+        erprocessWigCulture(wigCulture)
+    }
+
+    private func erprocessWigCulture(_ wigCulture: [Dictionary<String, Any>]) {
+        self.wigWarrior.removeAll()
+        
+        wigCulture.forEach({ rebayi in
+            let newBrand = ZigBrand(diconAModl: rebayi)
+            self.wigWarrior.append(newBrand)
+        })
+        
+        self.wigInfluencer.reloadData()
+    }
+
+    private func erhandleSiveGlue(_ wigTradition: Any) {
+        self.errorVierw.isHidden = true
+        // Additional logic for `siveGlue` can be added here
+    }
     
-    private func wigUnapologetic()  {
-        let sclayout = UICollectionViewFlowLayout.init()
+    
+    
+    
+    private func wigUnapologetic() {
+        let layout = createCollectionViewLayout()
+        configureWigInfluencer(layout: layout)
+        addTapGestureToWigSpecialist()
+    }
+
+    private func createCollectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 9
+        layout.minimumInteritemSpacing = 9
+        layout.itemSize = calculateItemSize()
+        return layout
+    }
+
+    private func calculateItemSize() -> CGSize {
+        let width = (UIScreen.main.bounds.width - 9 - 26) / 2
+        return CGSize(width: width, height: 228)
+    }
+
+    private func configureWigInfluencer(layout: UICollectionViewFlowLayout) {
         wigInfluencer.delegate = self
-        sclayout.scrollDirection = .vertical
-        wigSpecialist.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wigRuleBreaker)))
-        sclayout.minimumLineSpacing = 9
         wigInfluencer.dataSource = self
-        
-       
-        
-        sclayout.minimumInteritemSpacing = 9
-        sclayout.itemSize = CGSize.init(width: (UIScreen.main.bounds.width - 9 - 26)/2, height: 228)
-        wigInfluencer.collectionViewLayout = sclayout
+        wigInfluencer.collectionViewLayout = layout
         wigInfluencer.register(UINib(nibName: "HairWigLookCell", bundle: nil), forCellWithReuseIdentifier: "HairWigLookCell")
     }
+
+    private func addTapGestureToWigSpecialist() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(wigRuleBreaker))
+        wigSpecialist.addGestureRecognizer(tapGesture)
+    }
+
 
     @IBOutlet weak var wigSpecialist: UIImageView!
     
@@ -164,7 +251,27 @@ extension HairsCentricntroller:UICollectionViewDelegate,UICollectionViewDataSour
         
         
     }
+    @objc func wigEnchant()  {
+        let Dreia = UILabel()
+               
+        Dreia.text = "Color Harmony Guide"
+        let wigDesigner = ZigOdorNeutralizer.Softness.wigCustomFit(TryOn: "")
+        
+        let wigSculptor = ZoomHolecntroller.init(gradientWig: wigDesigner)
+        wigSculptor.hidesBottomBarWhenPushed = true
+        if Dreia.superview != nil {
+            return
+        }
+        self.navigationController?.pushViewController(wigSculptor, animated: true)
+     }
     
+    private func showStyleSuggestions() {
+            // Placeholder for showing style suggestions from AI
+            let suggestionsController = UIViewController()
+            suggestionsController.view.backgroundColor = .lightGray
+            suggestionsController.title = "Style Suggestions"
+            navigationController?.pushViewController(suggestionsController, animated: true)
+        }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         self.colorView.backgroundColor = UIColor.red
         if collectionView == wigCreator {
@@ -176,6 +283,7 @@ extension HairsCentricntroller:UICollectionViewDelegate,UICollectionViewDataSour
         }
         
         let elasticBand = collectionView.dequeueReusableCell(withReuseIdentifier: "HairWigLookCell", for: indexPath) as! HairWigLookCell
+        elasticBand.wigDesigner.addTarget(self, action: #selector(wigEnchant), for: .touchUpInside)
         elasticBand.wigQandA(wigTips:wigWarrior[indexPath.row])
         return elasticBand
     }
@@ -204,6 +312,7 @@ extension HairsCentricntroller:UICollectionViewDelegate,UICollectionViewDataSour
         let wigSculptor = ZoomHolecntroller.init(gradientWig: wigDesigner)
         wigSculptor.hidesBottomBarWhenPushed = true
         seasonLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         self.navigationController?.pushViewController(wigSculptor, animated: true)
     }
     
