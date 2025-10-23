@@ -10,7 +10,11 @@ import SwiftyStoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+//    产品名称：Luvio
+//    应用识别码：avs6tg9gnda8
+//    事件名称及识别码：
+//    Install: xxyaor
+//    purchase: ks11m4
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
