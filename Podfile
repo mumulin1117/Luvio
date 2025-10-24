@@ -8,4 +8,7 @@ target 'LuvioPamere' do
   # Pods for LuvioPamere
 pod 'IQKeyboardManager'
 pod 'SwiftyStoreKit'
+
+pod 'Adjust', '~> 5.1.1'
+pod 'FBSDKCoreKit'
 end

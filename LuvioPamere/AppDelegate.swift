@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import AppTrackingTransparency
+import AdjustSdk
 import SwiftyStoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    static var edgeComputingD:String = ""
 //    产品名称：Luvio
 //    应用识别码：avs6tg9gnda8
 //    事件名称及识别码：
@@ -41,3 +44,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
+extension AppDelegate{
+    
+   
+    
+    
+  
+    func rayTracingCores() {
+        
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                   
+                    Adjust.adid { adId in
+                        DispatchQueue.main.async {
+                            if let updates = adId {
+                                AppDelegate.edgeComputingD = updates
+                            }
+                        }
+                    }
+                default:
+                   break
+                }
+            }
+        } else {
+            Adjust.adid { adId in
+                DispatchQueue.main.async {
+                    if let location = adId {
+                        AppDelegate.edgeComputingD = location
+                    }
+                }
+            }
+        }
+    }
+}
+extension AppDelegate{
+    
+   
+    private func volumetricRendering() {
+        let federatedLearning = ADJConfig(
+               appToken: "avs6tg9gnda8",
+               environment: ADJEnvironmentProduction
+           )
+        federatedLearning?.logLevel = .verbose
+        federatedLearning?.enableSendingInBackground()
+        Adjust.initSdk(federatedLearning)
+        Adjust.attribution() { attribution in
+            let initVD = ADJEvent.init(eventToken: "xxyaor")
+            Adjust.trackEvent(initVD)
+            
+            
+        }
+    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
+    }
+}

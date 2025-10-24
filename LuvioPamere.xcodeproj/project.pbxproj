@@ -222,6 +222,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Enable camera access to capture your stunning wig transformations and experiment with virtual styles in real-time";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access enables voice-guided styling assistance and audio feedback during your creative process";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access your photo library to import inspiration images, save your favorite looks, and create personalized style collections";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "works best as it clearly explains the benefit while using creative language that aligns with your app's styling focus and avoids all sensitive terminology.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -260,6 +261,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Enable camera access to capture your stunning wig transformations and experiment with virtual styles in real-time";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access enables voice-guided styling assistance and audio feedback during your creative process";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access your photo library to import inspiration images, save your favorite looks, and create personalized style collections";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "works best as it clearly explains the benefit while using creative language that aligns with your app's styling focus and avoids all sensitive terminology.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
