@@ -57,10 +57,15 @@ class StyleChallengeController: UIViewController, UITextViewDelegate {
         lengths.attributedPlaceholder = NSAttributedString(string: UIButton.alternateStrands("Exnztnehrm kpgahspsmwuodrud"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         PolicyLabel.backgroundColor = .clear
         perfect.layer.cornerRadius = 12.5
-       
+        errorVierw.inserTuioLuvieoKeybrd()
         PolicyLabel.textContainerInset = .zero
+        neckline.inserTuioLuvieoKeybrd()
         PolicyLabel.textContainer.lineFragmentPadding = 0
         perfect.layer.masksToBounds = true
+        
+        
+        lengths.inserTuioLuvieoKeybrd()
+        
         userAgreementRange()
     }
     

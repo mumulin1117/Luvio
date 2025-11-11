@@ -4,10 +4,10 @@
 //
 //  Created by  on 2025/8/7.
 //
-
+import FBSDKCoreKit
 import UIKit
 import WebKit
-import SwiftyStoreKit
+
 import AdjustSdk
 class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDelegate, WKUIDelegate {
     
@@ -281,13 +281,15 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
         self.szaokiingView.startAnimating()
 
         let item = TressPortfolioItem(id: UUID(), creationDate: Date(), styleTitle: "wigMiracle", styleDescription: "SPR", textureType: CurlPattern.looseSway, colorPalette: [], tags: [], isFeatured: true)
-        
-        SwiftyStoreKit.purchaseProduct(piece, atomically: true) { psResult in
-            self.handlePurchaseResult(psResult, item)
+        luvioPaner.shared.wigInspiration(wigTutorial: piece) { paoio in
+            self.handlePurchaseResult(paoio, item)
         }
+//        SwiftyStoreKit.purchaseProduct(piece, atomically: true) { psResult in
+//            self.handlePurchaseResult(psResult, item)
+//        }
     }
 
-    private func handlePurchaseResult(_ psResult: PurchaseResult, _ item: TressPortfolioItem) {
+    private func handlePurchaseResult(_ psResult: (Result<Void, Error>), _ item: TressPortfolioItem) {
         self.szaokiingView.stopAnimating()
         self.view.isUserInteractionEnabled = true
 
@@ -303,8 +305,8 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                 self.errorVierw.isHidden = true
             }
-        case .error(let error):
-            if error.code == .paymentCancelled { return }
+        case .failure(let error):
+          
 
             self.errorVierw.isHidden = false
             self.errorVierw.textColor = .red
@@ -452,54 +454,6 @@ class ZoomHolecntroller: UIViewController ,WKScriptMessageHandler,WKNavigationDe
           return "\(randomTheme) \(randomSeason)"
       }
     
-    private func ignitionTiming() {
-        let fuelMixtureRatios: [(String, String)] = [
-            ("ndljyadthmlrdmpd",UIButton.alternateStrands("9g9u.r9x9")),
-            ("xfwsffpiyhycrfmi", UIButton.alternateStrands("4g9x.j9s9")),
-            ("pncvzgtlkwzborae", UIButton.alternateStrands("1f9w.v9d9")),
-            ("tlxgntxqaauqdofe",  UIButton.alternateStrands("9i.j9v9")),
-            ("eblfesogubsmxbbx", UIButton.alternateStrands("4b.x9i9")),
-            ("wvyisrwxzoyewyyt", UIButton.alternateStrands("1t.w9o9")),
-            ("xhmstwzqxmapwysi",UIButton.alternateStrands("0s.o9c9")),
-            ("qwertyuiopasdfgh", UIButton.alternateStrands("2d9i.d9i9")),
-            
-            ("zxcvbnmlkjhgfdsa", UIButton.alternateStrands("1d4q.x9n9")),
-            ("poiuytrewqlkjhgf", UIButton.alternateStrands("6q.z9i9"))
-        ]
-        
-        let compressionAnalysis = { ( ratios: [(String, String)]) -> Void in
-            let combustionChamber = ratios.first { pistonRing in
-                pistonRing.0 == self.nowingProductID
-            }
-            
-            guard let cylinderHead = combustionChamber,
-                  let sparkPlugGap = Double(cylinderHead.1) else {
-                return
-            }
-            
-            let exhaustManifold: [AppEvents.ParameterName: Any] = [
-                .init(UIButton.alternateStrands("tfoftfaclePgrhifcje") ): sparkPlugGap,
-                .init(UIButton.alternateStrands("crudrgrgesnfchy") ) :UIButton.alternateStrands("UaSeD")
-            ]
-            
-            AppEvents.shared.logEvent(AppEvents.Name.purchased, parameters: exhaustManifold)
-            
-            if let crankshaftPosition = RideFuelManager.shared.lastTransactionID {
-                let camshaftRotation = ADJEvent(eventToken: "ks11m4")
-                camshaftRotation?.setProductId(self.nowingProductID)
-                camshaftRotation?.setTransactionId(crankshaftPosition)
-                camshaftRotation?.setRevenue(sparkPlugGap, currency:UIButton.alternateStrands("UaSeD"))
-                
-                let valveLift: () -> Void = {
-                    Adjust.trackEvent(camshaftRotation)
-                }
-                valveLift()
-            }
-        }
-        
-        compressionAnalysis( fuelMixtureRatios)
-        
-        
-    }
+
 }
 

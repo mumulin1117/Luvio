@@ -4,11 +4,10 @@
 target 'LuvioPamere' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  pod 'Adjust', '~> 5.1.1'
   # Pods for LuvioPamere
-pod 'IQKeyboardManager'
-pod 'SwiftyStoreKit'
 
-pod 'Adjust', '~> 5.1.1'
+
+
 pod 'FBSDKCoreKit'
 end
