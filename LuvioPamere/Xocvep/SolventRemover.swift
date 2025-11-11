@@ -7,6 +7,52 @@
 
 
 import UIKit
+extension UIViewController {
+    func showTemporaryMessage(_ message: String, duration: TimeInterval = 2.0) {
+        // Create message label
+        let messageLabel = UILabel()
+        messageLabel.text = message
+        messageLabel.textColor = .white
+        messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
+        messageLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        messageLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        messageLabel.layer.cornerRadius = 8
+        messageLabel.clipsToBounds = true
+        
+        // Calculate size
+        let maxSize = CGSize(width: view.bounds.width - 80, height: view.bounds.height - 80)
+        let expectedSize = messageLabel.sizeThatFits(maxSize)
+        let labelWidth = min(expectedSize.width + 40, maxSize.width)
+        let labelHeight = min(expectedSize.height + 20, maxSize.height)
+        
+        // Position in center
+        messageLabel.frame = CGRect(
+            x: (view.bounds.width - labelWidth) / 2,
+            y: (view.bounds.height - labelHeight) / 2,
+            width: labelWidth,
+            height: labelHeight
+        )
+        
+        // Add to view
+        view.addSubview(messageLabel)
+        
+        // Animate appearance
+        messageLabel.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            messageLabel.alpha = 1
+        }
+        
+        // Auto remove after duration
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            UIView.animate(withDuration: 0.3, animations: {
+                messageLabel.alpha = 0
+            }) { _ in
+                messageLabel.removeFromSuperview()
+            }
+        }
+    }
+}
 
 class SolventRemover: NSObject {
     

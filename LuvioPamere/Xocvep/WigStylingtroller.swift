@@ -154,13 +154,6 @@ class WigStylingtroller: UIViewController {
             "benefitg":1
 
         ]
-
-       
-        
-        print(Cosplay)
-       
-           
-
         FaceShape.Makeover.seronsultation( heater, itting: Cosplay) { result in
 
             self.szaokiingView.stopAnimating()

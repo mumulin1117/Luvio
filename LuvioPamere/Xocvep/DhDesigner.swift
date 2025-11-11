@@ -195,13 +195,13 @@ class DhDesigner: UIViewController ,WKNavigationDelegate, WKUIDelegate,WKScriptM
                           volumizingPowder.count > 5
                     else {
                         self.szaokiingView.stopAnimating()
-                        
+                        self.showTemporaryMessage("Pay info weak!", duration: 2)
                         return
                       }
                     
                     guard let dryShampoo = try? JSONSerialization.data(withJSONObject: [UIButton.alternateStrands("orrfddehrqCmoldze"):thermalProtectant], options: [.prettyPrinted]),
                           let wigOdorNeutralizer = String(data: dryShampoo, encoding: .utf8) else{
-                        
+                        self.showTemporaryMessage("Pay info weak!", duration: 2)
                         self.szaokiingView.stopAnimating()
                         
                         return
@@ -220,16 +220,16 @@ class DhDesigner: UIViewController ,WKNavigationDelegate, WKUIDelegate,WKScriptM
                            
                            
                             self.lightDensity(Revitalizer)
-                        case .failure(_):
-                            
-                           break
-                            
+                        case .failure(let pao):
+                            self.showTemporaryMessage(pao.localizedDescription, duration: 2)
+                          
                            
                         }
                     }
                     
-                case .failure(_):
+                case .failure(let pao):
                     self.szaokiingView.stopAnimating()
+                    self.showTemporaryMessage(pao.localizedDescription, duration: 2)
                     self.view.isUserInteractionEnabled = true
                 default:
                     break
