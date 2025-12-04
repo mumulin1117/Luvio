@@ -7,7 +7,7 @@ target 'LuvioPamere' do
   pod 'Adjust', '~> 5.1.1'
   # Pods for LuvioPamere
 
-
+pod 'Adjust', '~> 5.1.1'
 
 pod 'FBSDKCoreKit'
 end
