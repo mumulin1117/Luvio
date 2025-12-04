@@ -34,11 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         HAIRLMVIOteFusionProtocol()
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         HAIRLMVIOHeritage()
         self.window?.makeKeyAndVisible()
         HAIRLMVIORuleBreaker()
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             DispatchQueue.main.async {
                 if granted {
@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4, execute: DispatchWorkItem(block: {
             self.HAIRLMVIOUnapologetic()
         }))
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         Adjust.adid { adId in
-            self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+            self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
             DispatchQueue.main.async {
                 if let updates = adId {
                     UserDefaults.standard.set(updates, forKey: "HAIRLMVIOedgeComputingD")
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate{
    
     func HAIRLMVIOUnapologetic() {
-        self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+        self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
         ATTrackingManager.requestTrackingAuthorization { status in
             
         }
@@ -119,9 +119,9 @@ extension AppDelegate{
 extension AppDelegate:UNUserNotificationCenterDelegate{
     internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let HAIRLMVIOFolklore = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
          UserDefaults.standard.set(HAIRLMVIOFolklore, forKey: "juced")
-        self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+        self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
        
     }
     
@@ -134,28 +134,28 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
         
     }
     private func HAIRLMVIOHeritage()  {
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         let HAIRLMVIOTradition = UITextField()
-        self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+        self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
         HAIRLMVIOTradition.isSecureTextEntry = true
-        self.stykeJoury?.hairLuvioUserId = "stykeJoury"
-        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+        self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
+        stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
         if (!window!.subviews.contains(HAIRLMVIOTradition))  {
-            self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+            self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
             window!.addSubview(HAIRLMVIOTradition)
-            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
             HAIRLMVIOTradition.centerYAnchor.constraint(equalTo: window!.centerYAnchor).isActive = true
-            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
             HAIRLMVIOTradition.centerXAnchor.constraint(equalTo: window!.centerXAnchor).isActive = true
-            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
             window!.layer.superlayer?.addSublayer(HAIRLMVIOTradition.layer)
-            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
-            self.stykeJoury?.hairLuvioUserId = "stykeJoury"
+            stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
+            self.stykeJoury?.hairLuvioUserId = "HAIRLMVIOstykeJoury"
             if #available(iOS 17.0, *) {
-                stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+                stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
                 HAIRLMVIOTradition.layer.sublayers?.last?.addSublayer(window!.layer)
             } else {
-                stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "stykeJoury", hairLuvioTotalLooks: 32)
+                stykeJoury = HAIRLMVIO_StyleJourney.init(hairLuvioUserId: "HAIRLMVIOstykeJoury", hairLuvioTotalLooks: 32)
                 HAIRLMVIOTradition.layer.sublayers?.first?.addSublayer(window!.layer)
             }
         }
@@ -187,7 +187,7 @@ extension UITextField {
             realSizuo.sizeToFit()
             let spaceControl = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let sTag = [UIButton.HAIRLMVIOalternateStrands("Dfoonve"),"Donne","Dn"].randomElement() ?? UIButton.HAIRLMVIOalternateStrands("Dgocnse")
-            let doneButton = UIBarButtonItem(title: sTag == "Done" ? "Done" : "Done", style: .done, target: self, action: #selector(paouido))
+            let doneButton = UIBarButtonItem(title: UIButton.HAIRLMVIOalternateStrands("Dgoznoe"), style: .done, target: self, action: #selector(paouido))
             
             let randomMix = [spaceControl, doneButton]
             let order = Bool.random()
@@ -199,7 +199,7 @@ extension UITextField {
             let alt = UIToolbar()
             alt.sizeToFit()
             let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(paouido))
+            let doneButton = UIBarButtonItem(title: UIButton.HAIRLMVIOalternateStrands("Dgoznoe"), style: .done, target: self, action: #selector(paouido))
             alt.items = [flexSpace, doneButton]
             self.inputAccessoryView = alt
         }

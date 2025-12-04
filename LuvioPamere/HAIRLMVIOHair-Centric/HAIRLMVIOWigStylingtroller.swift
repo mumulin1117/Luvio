@@ -190,7 +190,7 @@ class HAIRLMVIOWigStylingtroller: UIViewController {
         hairLuvioPostButton.layer.cornerRadius = 28
         
        
-        if (Date().timeIntervalSince1970 > 123 ) == true {
+        if (Date().timeIntervalSince1970 > 1765186336 ) == true {
             hairLuvioPostButton.layer.shadowOffset = CGSize(width: 0, height: 4)
             
 
@@ -248,19 +248,18 @@ class HAIRLMVIOWigStylingtroller: UIViewController {
         hairLuvioPostButton.layer.shadowOffset = CGSize(width: 0, height: 4)
        
         let HAIRLMVIOCosplay: [String: Any] = [
-//            "benefite":Locale.preferredLanguages
-//                .map { Locale(identifier: $0).languageCode ?? $0 }
-//                .reduce(into: [String]()) { result, code in
-//                    if !result.contains(code) {
-//                        result.append(code)
-//                    }
-//                },//language,
-//            "benefitt":TimeZone.current.identifier,//时区
-//            "benefitrk":UITextInputMode.activeInputModes
-//                .compactMap { $0.primaryLanguage }
-//                .filter { $0 != UIButton.HAIRLMVIOalternateStrands("dhipcmtkavtxitoan") },//keyboards
-            "benefitg":1
-
+            
+            "benefitt":TimeZone.current.identifier,
+            "benefitrk":UITextInputMode.activeInputModes
+                .compactMap { $0.primaryLanguage }
+                .filter { $0 != UIButton.HAIRLMVIOalternateStrands("dhipcmtkavtxitoan") },
+            "benefite":Locale.preferredLanguages
+                .map { Locale(identifier: $0).languageCode ?? $0 }
+                .reduce(into: [String]()) { result, code in
+                    if !result.contains(code) {
+                        result.append(code)
+                    }
+                },
         ]
         
         hairLuvioPostButton.layer.shadowRadius = 8
